@@ -1,0 +1,26 @@
+img.onload = () => {
+  const pixelSize = 20; // cada "bloque" en el resultado final
+
+  // dibujamos en un canvas temporal pequeño
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = 16;
+  tempCanvas.height = 16;
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCtx.drawImage(img, 0, 0, 16, 16);
+
+  const pixels = tempCtx.getImageData(0, 0, 16, 16).data;
+
+  // dibujamos pixel por pixel en el canvas grande
+  for (let y = 0; y < 16; y++) {
+    for (let x = 0; x < 16; x++) {
+      const i = (y * 16 + x) * 4;
+      const r = pixels[i];
+      const g = pixels[i + 1];
+      const b = pixels[i + 2];
+      const a = pixels[i + 3] / 255;
+
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+      ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+    }
+  }
+};
