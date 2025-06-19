@@ -47,18 +47,18 @@
         const pixels = tempCtx.getImageData(0, 0, size, size).data;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (let y = 0; y < size; y++) {
-          for (let x = 0; x < size; x++) {
-            const i = (y * size + x) * 4;
-            const r = pixels[i];
-            const g = pixels[i + 1];
-            const b = pixels[i + 2];
-            const a = pixels[i + 3] / 255;
+  for (let y = 0; y < size; y++) {
+   for (let x = 0; x < size; x++) {
+    const i = (y * size + x) * 4;
+    const r = pixels[i];
+    const g = pixels[i + 1];
+    const b = pixels[i + 2];
+    const a = pixels[i + 3] / 255;
 
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-            ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
-          }
-        }
+    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+    ctx.fillRect(x * 30, y * 90, 30, 90); // Aquí aplicamos 30x90 por bloque
+  }
+}
       };
       img.src = URL.createObjectURL(file);
     });
